@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OTP Verification</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="public/css/style.css" />
+  <link rel="stylesheet" href="public/css/responsive.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <div class="card otp-card">
+
+      <div class="logo">Orange</div>
+
+      <h1>Verify OTP</h1>
+      <p class="subtitle">Enter the 6-digit code sent to your mobile number</p>
+
+      <form id="otpForm">
+        <div class="otp-inputs">
+          <input type="text" maxlength="1" pattern="\d" required />
+          <input type="text" maxlength="1" pattern="\d" required />
+          <input type="text" maxlength="1" pattern="\d" required />
+          <input type="text" maxlength="1" pattern="\d" required />
+          <input type="text" maxlength="1" pattern="\d" required />
+          <input type="text" maxlength="1" pattern="\d" required />
+        </div>
+
+        <button type="submit" class="btn-primary">Verify OTP</button>
+      </form>
+
+      <p class="resend-text">
+        Didn't receive code? <span id="resendBtn" onclick="resendOTP()">Resend (<span id="timer">60</span>s)</span>
+      </p>
+
+    </div>
+  </div>
+
+  <script>
+    // Auto-focus OTP inputs
+    const otpInputs = document.querySelectorAll(".otp-inputs input");
+    otpInputs.forEach((input, index) => {
+      input.addEventListener("input", () => {
+        if (input.value.length === 1 && index < otpInputs.length - 1) {
+          otpInputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && index > 0 && input.value === "") {
+          otpInputs[index - 1].focus();
+        }
+      });
+    });
+
+    // Countdown timer
+    let timerEl = document.getElementById("timer");
+    let resendBtn = document.getElementById("resendBtn");
+    let timeLeft = 60;
+    let countdown = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        resendBtn.textContent = "Resend OTP";
+        resendBtn.style.cursor = "pointer";
+      }
+    }, 1000);
+
+    function resendOTP() {
+      if (timeLeft > 0) return;
+      alert("OTP resent!"); // Replace with actual API
+      timeLeft = 60;
+      timerEl.textContent = timeLeft;
+      resendBtn.innerHTML = `Resend (<span id="timer">${timeLeft}</span>s)`;
+      countdown = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          resendBtn.textContent = "Resend OTP";
+        }
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
