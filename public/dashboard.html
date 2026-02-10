@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard – Orange Carrier</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <div class="logo">Orange<span>Carrier</span></div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="index.html">Website</a>
+      <a href="#">My Numbers</a>
+      <a href="#">Reports</a>
+      <a href="login.html">Logout</a>
+    </nav>
+  </div>
+</header>
+
+<section class="container page">
+
+  <h2>Carrier Dashboard</h2>
+  <p class="subtitle">Welcome back, Najmul</p>
+
+  <!-- STAT CARDS -->
+  <div class="grid">
+
+    <div class="card stat">
+      <h4>Total Numbers</h4>
+      <h2 id="totalNumbers">0</h2>
+    </div>
+
+    <div class="card stat">
+      <h4>Today Calls</h4>
+      <h2 id="todayCalls">0</h2>
+    </div>
+
+    <div class="card stat">
+      <h4>Today Revenue</h4>
+      <h2 id="todayRevenue">$0.00</h2>
+    </div>
+
+    <div class="card stat">
+      <h4>Monthly Revenue</h4>
+      <h2 id="monthlyRevenue">$0.00</h2>
+    </div>
+
+  </div>
+
+  <!-- TRAFFIC TABLE -->
+  <div class="card mt">
+
+    <h3>Live Traffic Summary</h3>
+
+    <div class="table-wrap">
+      <table class="table" id="trafficTable">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Number</th>
+            <th>Calls</th>
+            <th>ASR</th>
+            <th>Revenue</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
